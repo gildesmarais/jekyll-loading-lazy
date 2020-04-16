@@ -1,0 +1,16 @@
+inherit_gem:
+  jekyll: .rubocop.yml
+
+AllCops:
+  TargetRubyVersion: 2.6
+  Exclude:
+    - vendor/**/*
+
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*
+    - jekyll-loading-lazy.gemspec
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
