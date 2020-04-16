@@ -1,15 +1,14 @@
+require: rubocop-jekyll
+
 inherit_gem:
-  jekyll: .rubocop.yml
+  rubocop-jekyll: .rubocop.yml
 
 AllCops:
-  TargetRubyVersion: 2.6
-  Exclude:
-    - vendor/**/*
+  TargetRubyVersion: 2.5
 
 Metrics/LineLength:
   Exclude:
     - spec/**/*
-    - jekyll-loading-lazy.gemspec
 
 Metrics/BlockLength:
   Exclude:

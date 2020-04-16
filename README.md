@@ -3,10 +3,10 @@
 This plugin adds `loading="lazy"` attribute to all `img` and `iframe` tags
 unless a `loading` attribute is already present.
 
-This causes images and iframes to be load lazily without any JavaScript.
+This causes images and iframes to load lazily without any JavaScript.
 [Browser support](https://caniuse.com/#feat=loading-lazy-attr) is growing.
 If a browser does not support the `loading` attribute, it will directly
-(blockingly) load the resource.
+(read: _blockingly_) load the resource.
 
 ## Installation
 
@@ -34,15 +34,13 @@ gems:
 
 Simply [create an issue](https://github.com/gildesmarais/jekyll-loading-lazy/issues/new) and I will respond as soon as possible.
 
-
 ## Contributing
 
 1. [Fork it](https://github.com/gildesmarais/jekyll-loading-lazy/fork)
 2. Create your feature branch (`git checkout -b my-new-feature)
 3. Commit your changes (`git commit -m 'Add some feature'`)
 4. Push to the branch (git push origin my-new-feature)
-4. Create a new Pull Request
-
+5. Create a new Pull Request
 
 ### Testing
 
@@ -54,4 +52,4 @@ rspec
 
 ## Credits
 
-Thanks to [@keithmifsud's `jekyll-target-blank`](https://github.com/keithmifsud/jekyll-target-blank) whereon this plugin is largely bases.
+Thanks to [@keithmifsud's `jekyll-target-blank`](https://github.com/keithmifsud/jekyll-target-blank) whereon this plugin largely bases.
