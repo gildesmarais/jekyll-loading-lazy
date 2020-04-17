@@ -11,29 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      
-    - name: Set up Ruby 2.5
-      uses: actions/setup-ruby@v1
-      with:
-        version: 2.5.x
-          
-    - name: setup bundler, rubocop and rspec
-      run: |
-        gem install bundler
-        bundle config path vendor/bundle
-        bundle config --global frozen 1
-        bundle install --jobs 4 --retry 3    
-        bundle exec rubocop --fail-fast
-        bundle exec rake
-        
-    - name: Publish to RubyGems
-      run: |
-        mkdir -p $HOME/.gem
-        touch $HOME/.gem/credentials
-        chmod 0600 $HOME/.gem/credentials
-        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-        bundle exec gem build *.gemspec
-        bundle exec gem push *.gem
-      env:
-        GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
+      - uses: actions/checkout@v2
+
+      - name: Set up Ruby 2.5
+        uses: actions/setup-ruby@v1
+        with:
+          version: 2.5.x
+
+      - name: setup bundler, rubocop and rspec
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle config --global frozen 1
+          bundle install --jobs 4 --retry 3
+          bundle exec rubocop --fail-fast
+          bundle exec rake
+
+      - name: Publish to RubyGems
+        run: |
+          mkdir -p $HOME/.gem
+          touch $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
+          printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
+          bundle exec gem build *.gemspec
+          bundle exec gem push *.gem
+        env:
+          GEM_HOST_API_KEY: ${{secrets.RUBYGEMS_AUTH_TOKEN}}
