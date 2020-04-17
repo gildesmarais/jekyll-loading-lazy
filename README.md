@@ -1,6 +1,6 @@
 # jekyll-loading-lazy
 
-This plugin adds `loading="lazy"` attribute to all `img` and `iframe` tags on
+This plugin adds `loading="lazy"` to all `img` and `iframe` tags on
 your [Jekyll site](https://jekyllrb.com/). No configuration needed.  
 If a `loading` attribute is already present nothing is changed.
 

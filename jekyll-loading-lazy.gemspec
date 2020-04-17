@@ -15,8 +15,7 @@ Gem::Specification.new do |spec|
   DESC
   spec.homepage = "https://github.com/gildesmarais/jekyll-loading-lazy"
   spec.license = "MIT"
-  spec.files =
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r!^(spec)/!) }
+  spec.files = Dir["{lib}/**/*.*", "*.md"]
   spec.metadata = {
     "bug_tracker_uri" =>
                          "https://github.com/gildesmarais/jekyll-loading-lazy/issues",
