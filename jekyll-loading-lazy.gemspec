@@ -15,7 +15,12 @@ Gem::Specification.new do |spec|
   DESC
   spec.homepage = "https://github.com/gildesmarais/jekyll-loading-lazy"
   spec.license = "MIT"
-  spec.files = `git ls-files -z`.split("\x0")
+  spec.files =
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r!^(spec)/!) }
+  spec.metadata = {
+    "bug_tracker_uri" =>
+                         "https://github.com/gildesmarais/jekyll-loading-lazy/issues",
+  }
   spec.require_paths = %w(lib)
   spec.required_ruby_version = ">= 2.5.8"
   spec.add_dependency "jekyll", ">= 3.0", "<5.0"
