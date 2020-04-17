@@ -5,11 +5,5 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 2.5
-
-Metrics/LineLength:
   Exclude:
-    - spec/**/*
-
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*
+    - vendor/**/*

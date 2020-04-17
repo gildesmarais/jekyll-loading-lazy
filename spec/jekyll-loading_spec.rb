@@ -3,15 +3,14 @@
 RSpec.describe(Jekyll::LoadingLazy) do
   Jekyll.logger.log_level = :error
 
-  let(:configs) do
-    Jekyll.configuration(
-      "skip_config_files" => false,
-      "source"            => unit_fixtures_dir,
-      "destination"       => unit_fixtures_dir("_site")
-    )
+  let(:site) do
+    Jekyll::Site.new(Jekyll.configuration(
+                       "skip_config_files" => false,
+                       "source"            => unit_fixtures_dir,
+                       "destination"       => unit_fixtures_dir("_site")
+                     ))
   end
 
-  let(:site) { Jekyll::Site.new(configs) }
   let(:posts) { site.posts.docs.sort.reverse }
 
   let(:post_with_multiple_markdown_images) do
@@ -19,11 +18,13 @@ RSpec.describe(Jekyll::LoadingLazy) do
   end
 
   let(:post_with_img) { find_by_title(posts, "Post with html <img> tag") }
+
   let(:post_with_loading_img) do
     find_by_title(posts, "Post with html <img> tag having loading attribute")
   end
 
   let(:post_with_iframe) { find_by_title(posts, "Post with html <iframe> tag") }
+
   let(:post_with_loading_iframe) do
     find_by_title(posts, "Post with html <iframe> tag having loading attribute")
   end
@@ -31,6 +32,7 @@ RSpec.describe(Jekyll::LoadingLazy) do
   let(:document_with_liquid_tag) do
     find_by_title(site.collections["docs"].docs, "Document with liquid tag")
   end
+
   let(:document_with_include) do
     find_by_title(site.collections["docs"].docs, "Document with include")
   end
@@ -63,42 +65,53 @@ RSpec.describe(Jekyll::LoadingLazy) do
       HTML
     end
 
-    it do
-      expect(post_with_img.output).to include(<<~HTML)
-        <p><img src="https://via.placeholder.com/150" loading="lazy"></p>
-      HTML
+    context "with img" do
+      it "adds loading attribute" do
+        expect(post_with_img.output).to include(<<~HTML)
+          <p><img src="https://via.placeholder.com/150" loading="lazy"></p>
+        HTML
+      end
     end
 
-    it do
-      expect(post_with_iframe.output).to include(<<~HTML)
-        <iframe src="https://via.placeholder.com/150" loading="lazy"></iframe>
-      HTML
+    context "with iframe" do
+      it "adds loading attribute" do
+        expect(post_with_iframe.output).to include(<<~HTML)
+          <iframe src="https://via.placeholder.com/150" loading="lazy"></iframe>
+        HTML
+      end
+    end
+    context "with img with liquid tags" do
+      it "adds loading attribute" do
+        expect(document_with_liquid_tag.output).to include(<<~HTML)
+          <p>This <img src="/docs/document-with-liquid-tag.html" loading="lazy"> is an image with a liquid tag.</p>
+        HTML
+      end
     end
 
-    it "adds loading attribute on image with liquid tags" do
-      expect(document_with_liquid_tag.output).to include(<<~HTML)
-        <p>This <img src="/docs/document-with-liquid-tag.html" loading="lazy"> is an image with a liquid tag.</p>
-      HTML
-    end
-
-    it "adds loading attribute on image within includes" do
-      expect(document_with_include.output).to include(<<~HTML)
-        <p>This is a document with an include: This is an include. It has an image. <img src="https://via.placeholder.com/150" alt="" loading="lazy"></p>
-      HTML
+    context "with img within includes" do
+      it "adds loading attribute" do
+        expect(document_with_include.output).to include(<<~HTML)
+          <p>This is a document with an include: This is an include. It has an image. <img src="https://via.placeholder.com/150" alt="" loading="lazy"></p>
+        HTML
+      end
     end
   end
 
   context "with loading attribute present" do
-    it "does not change the attributes value" do
-      expect(post_with_loading_img.output).to include(<<~HTML)
-        <p><img src="https://via.placeholder.com/150" loading="eager"></p>
-      HTML
+    context "with img" do
+      it "does not set loading=lazy" do
+        expect(post_with_loading_img.output).to include(<<~HTML)
+          <p><img src="https://via.placeholder.com/150" loading="eager"></p>
+        HTML
+      end
     end
 
-    it "does not change the attributes value" do
-      expect(post_with_loading_iframe.output).to include(<<~HTML)
-        <iframe src="https://example.com" loading="eager"></iframe>
-      HTML
+    context "with iframe" do
+      it "does not set loading=lazy" do
+        expect(post_with_loading_iframe.output).to include(<<~HTML)
+          <iframe src="https://example.com" loading="eager"></iframe>
+        HTML
+      end
     end
   end
 end
