@@ -1,0 +1,45 @@
+name: Rails
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up Ruby 2.5
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.x
+
+      - name: Cache gems
+        uses: actions/cache@preview
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+
+      - name: setup bundler
+        run: |
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle config --global frozen 1
+      - name: bundle install
+        run: bundle install --jobs 4 --retry 3
+
+      - name: run rubocop
+        run: bundle exec rubocop --fail-fast
+
+      - name: run rspec
+        run: bundle exec rake
+
+      - name: build
+        run: bundle exec rake build
