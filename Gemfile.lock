@@ -105,12 +105,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler
+  bundler (~> 2.0)
   jekyll-loading-lazy!
   rake (~> 12.0)
   rspec (~> 3.0)
-  rubocop
-  rubocop-jekyll
+  rubocop (<= 1.0)
+  rubocop-jekyll (<= 1.0)
 
 BUNDLED WITH
    2.1.4
