@@ -1,4 +1,4 @@
-name: Rails
+name: rubocop, rspec and build
 
 on:
   push:

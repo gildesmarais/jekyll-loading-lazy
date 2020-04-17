@@ -1,55 +1,70 @@
-# Jekyll Loading Lazy
+# jekyll-loading-lazy
 
-This plugin adds `loading="lazy"` attribute to all `img` and `iframe` tags
-unless a `loading` attribute is already present.
+This plugin adds `loading="lazy"` attribute to all `img` and `iframe` tags on
+your [Jekyll site](https://jekyllrb.com/). No configuration needed.  
+If a `loading` attribute is already present nothing is changed.
 
-This causes images and iframes to load lazily without any JavaScript.
-[Browser support](https://caniuse.com/#feat=loading-lazy-attr) is growing.
+`loading="lazy"` causes images and iframes to load lazily without any JavaScript.
+[Browser support](https://caniuse.com/#feat=loading-lazy-attr) is growing.  
 If a browser does not support the `loading` attribute, it will directly
 (read: _blockingly_) load the resource.
 
+If you like it, be awesome and
+[_buy me a coffee_ ☕️](https://www.buymeacoffee.com/gildesmarais). Thank you!
+
 ## Installation
 
-Add the following to your site's `Gemfile`
+1. Add the following to your site's `Gemfile`:
 
-```
-gem 'jekyll-loading-lazy'
-```
+   ```
+   gem 'jekyll-loading-lazy'
+   ```
 
-and add the following to your site's `_config.yml`
+2. add the following to your site's `_config.yml`:
 
-```yml
-plugins:
-  - jekyll-loading-lazy
-```
+   ```yml
+   plugins:
+     - jekyll-loading-lazy
+   ```
 
-Note: if `jekyll --version` is less than `3.5` use:
+   **Note**: if `jekyll --version` is less than `3.5` use:
 
-```yml
-gems:
-  - jekyll-loading-lazy
-```
+   ```yml
+   gems:
+     - jekyll-loading-lazy
+   ```
 
-## Support
+3. In your terminal, execute:
 
-Simply [create an issue](https://github.com/gildesmarais/jekyll-loading-lazy/issues/new) and I will respond as soon as possible.
+   ```bash
+   bundle
+   ```
+4. (re)start your Jekyll server with:
+
+   ```bash
+   jekyll serve
+   ```
+
+That's basically all there is.
+In case you want to eager load some images/iframes, add `loading="eager"`
+to their tags.
 
 ## Contributing
 
-1. [Fork it](https://github.com/gildesmarais/jekyll-loading-lazy/fork)
-2. Create your feature branch (`git checkout -b my-new-feature)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (git push origin my-new-feature)
+1. [Fork this repository](https://github.com/gildesmarais/jekyll-loading-lazy/fork)
+2. Create your branch (`git checkout -b feat/my-new-feature)
+3. Commit your changes (`git commit -m 'Add cool feature'`)
+4. Push to the branch (git push origin feat/my-new-feature)
 5. Create a new Pull Request
 
 ### Testing
 
 ```bash
-rake spec
-# or
-rspec
+rake
 ```
 
 ## Credits
 
-Thanks to [@keithmifsud's `jekyll-target-blank`](https://github.com/keithmifsud/jekyll-target-blank) whereon this plugin largely bases.
+Thanks to @keithmifsud's
+[`jekyll-target-blank`](https://github.com/keithmifsud/jekyll-target-blank)
+whereon this Jekyll plugin largely bases.

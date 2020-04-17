@@ -65,6 +65,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rexml (3.2.4)
     rouge (3.18.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -79,21 +80,22 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.2)
-    rubocop (0.71.0)
+    rubocop (0.80.1)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
-      parser (>= 2.6)
+      parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-jekyll (0.10.0)
-      rubocop (>= 0.68.0, < 0.72.0)
+    rubocop-jekyll (0.11.0)
+      rubocop (>= 0.68.0, < 0.81.0)
       rubocop-performance (~> 1.2)
     rubocop-performance (1.5.2)
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
     safe_yaml (1.0.5)
-    sassc (2.2.1)
+    sassc (2.3.0)
       ffi (~> 1.9)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
@@ -111,4 +113,4 @@ DEPENDENCIES
   rubocop-jekyll
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

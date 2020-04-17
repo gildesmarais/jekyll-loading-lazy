@@ -11,7 +11,7 @@ module Jekyll
 
     def self.process?(doc)
       (doc.is_a?(Jekyll::Page) || doc.write?) && doc.output_ext == ".html" ||
-        (doc.permalink&.end_with?("/"))
+        doc.permalink&.end_with?("/")
     end
 
     def self.process_image_tags(html)
