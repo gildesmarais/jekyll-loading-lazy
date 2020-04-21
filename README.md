@@ -6,17 +6,17 @@ If a `loading` attribute is already present nothing is changed.
 
 `loading="lazy"` causes images and iframes to load lazily without any JavaScript.
 [Browser support](https://caniuse.com/#feat=loading-lazy-attr) is growing.  
-If a browser does not support the `loading` attribute, it will directly
-(read: _blockingly_) load the resource.
+If a browser does not support the `loading` attribute, it will load the resource
+just like it would normally.
 
-If you like it, be awesome and
+If you like this plugin, be awesome and
 [_buy me a coffee_ ☕️](https://www.buymeacoffee.com/gildesmarais). Thank you!
 
 ## Installation
 
 1. Add the following to your site's `Gemfile`:
 
-   ```
+   ```ruby
    gem 'jekyll-loading-lazy'
    ```
 
@@ -52,7 +52,7 @@ to their tags.
 ## Contributing
 
 1. [Fork this repository](https://github.com/gildesmarais/jekyll-loading-lazy/fork)
-2. Create your branch (`git checkout -b feat/my-new-feature)
+2. Create your branch (`git checkout -b feat/my-new-feature`)
 3. Commit your changes (`git commit -m 'Add cool feature'`)
 4. Push to the branch (git push origin feat/my-new-feature)
 5. Create a new Pull Request
