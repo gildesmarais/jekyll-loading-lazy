@@ -37,6 +37,8 @@ RSpec.describe(Jekyll::LoadingLazy) do
     find_by_title(site.collections["docs"].docs, "Document with include")
   end
 
+  let(:page_nothing) { find_by_title(site.pages, "Nothing").output }
+
   before(:each) do
     site.reset
     site.read
@@ -44,13 +46,14 @@ RSpec.describe(Jekyll::LoadingLazy) do
     site.render
   end
 
-  it "should not break layout content" do
+  it "should not break the html structure" do
     expect(site.pages.first.output).to include(
-      "<div>Layout content started.</div>"
-    )
-
-    expect(site.pages.first.output).to include(
-      "<div>Layout content ended.</div>"
+      "<html",
+      "<body",
+      "<div>Layout content started.</div>",
+      "<div>Layout content ended.</div>",
+      "</body>",
+      "</html>"
     )
   end
 
@@ -112,6 +115,14 @@ RSpec.describe(Jekyll::LoadingLazy) do
           <iframe src="https://example.com" loading="eager"></iframe>
         HTML
       end
+    end
+  end
+
+  context "without any img/iframe" do
+    it "does not change the markup" do
+      expect(page_nothing).to include(<<~HTML)
+        <p>Nothing to do in here.</p>
+      HTML
     end
   end
 end

@@ -6,7 +6,8 @@ require "nokogiri"
 module Jekyll
   class LoadingLazy
     def self.process(content)
-      content.output = process_image_tags(content.output)
+      html = content.output
+      content.output = process_tags(html) if process_tags?(html)
     end
 
     def self.process?(doc)
@@ -14,14 +15,19 @@ module Jekyll
         doc.permalink&.end_with?("/")
     end
 
-    def self.process_image_tags(html)
-      content = Nokogiri::HTML::DocumentFragment.parse(html)
-      anchors = content.css("img[src], iframe[src]")
-      anchors.each { |item| item["loading"] = "lazy" unless item["loading"] }
+    def self.process_tags?(html)
+      html.include?("<img") || html.include?("<iframe")
+    end
+
+    def self.process_tags(html)
+      content = Nokogiri.HTML(html)
+      tags = content.css("img[src], iframe[src]")
+      tags.each { |tag| tag["loading"] = "lazy" unless tag["loading"] }
       content.to_html
     end
 
-    private_class_method :process_image_tags
+    private_class_method :process_tags
+    private_class_method :process_tags?
   end
 end
 
