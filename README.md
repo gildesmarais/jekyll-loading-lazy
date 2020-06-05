@@ -1,4 +1,4 @@
-# jekyll-loading-lazy
+# jekyll-loading-lazy [![](http://img.shields.io/liberapay/goal/gildesmarais.svg?logo=liberapa)](https://liberapay.com/gildesmarais/donate)
 
 This plugin adds `loading="lazy"` to all `img` and `iframe` tags on
 your [Jekyll site](https://jekyllrb.com/). No configuration needed.  
@@ -9,8 +9,7 @@ If a `loading` attribute is already present nothing is changed.
 If a browser does not support the `loading` attribute, it will load the resource
 just like it would normally.
 
-If you like this plugin, be awesome and
-[_buy me a coffee_ ☕️](https://www.buymeacoffee.com/gildesmarais). Thank you!
+⭐ If you like it, star it or [sponsor it](https://liberapay.com/gildesmarais/donate). 💓
 
 ## Installation
 
